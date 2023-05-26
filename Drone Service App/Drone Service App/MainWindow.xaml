@@ -6,74 +6,36 @@
         xmlns:local="clr-namespace:Drone_Service_App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid Margin="10,0,10,0" Width="NaN">
+        <Label x:Name="lblName"      HorizontalAlignment="Left" Margin="20,46,0,0" VerticalAlignment="Top" Content="Name" FontFamily="Segoe UI" />
+        <Label x:Name="lblCategory"  HorizontalAlignment="Left" Margin="20,79,0,0" VerticalAlignment="Top" Content="Category" FontFamily="Segoe UI" RenderTransformOrigin="0.569,0.502" />
+        <Label x:Name="lblStructure" HorizontalAlignment="Left" Margin="19,143,0,0" VerticalAlignment="Top" Content="Structure" FontFamily="Segoe UI" />
+        <Label x:Name="lblDefiniton" HorizontalAlignment="Left" Margin="18,117,0,0" VerticalAlignment="Top" Content="Definiton" FontFamily="Segoe UI" />
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Client Name:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <TextBox x:Name="txtClientName" Width="150"/>
+        <TextBox x:Name="txtSearch"     HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtSearch_TextChanged" />
+        <TextBox x:Name="txtName"       HorizontalAlignment="Left" Margin="90,50,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtName_TextChanged" />
+        <TextBox x:Name="txtDefiniton"  HorizontalAlignment="Left" Margin="90,117,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtDefiniton_TextChanged" />
 
-            <!-- Add text boxes for other attributes -->
+        <Button x:Name="searchButton" Margin="20,10,0,0" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="searchButton_Click"/>
+        <Button x:Name="addButton"    Margin="0,13,0,0" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Click="addButton_Click"/>
+        <Button x:Name="editButton"   Margin="0,44,0,0" Content="Edit" HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Click="editButton_Click"/>
 
-            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                <TextBlock Text="Priority:" VerticalAlignment="Center"/>
-                <RadioButton x:Name="rbStandard" Content="Standard" Margin="5,0"/>
-                <RadioButton x:Name="rbExpress" Content="Express" Margin="5,0"/>
-            </StackPanel>
+        <Button x:Name="deleteButton" Margin="0,79,0,0" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Click="deleteButton_Click"/>
+        <Button x:Name="loadButton"   Margin="442,46,0,0" Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="loadButton_Click"/>
+        <Button x:Name="saveButton"   Margin="442,15,0,0" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="saveButton_Click"/>
 
-            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                <Button Content="Add" Click="AddButton_Click" Margin="0,0,5,0"/>
-                <Button Content="Edit" Click="EditButton_Click" Margin="0,0,5,0"/>
-                <Button Content="Delete" Click="DeleteButton_Click" Margin="0,0,5,0"/>
-                <Button Content="Complete" Click="CompleteButton_Click" Margin="0,0,5,0"/>
-                <Button Content="Client Paid" Click="ClientPaidButton_Click"/>
-            </StackPanel>
+        <ListView x:Name="lstView" Margin="20,197,633,28" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstView_SelectionChanged" Width="NaN" Height="NaN"/>
+        <StatusBar x:Name="statusBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></StatusBar>
+
+        <StackPanel Margin="363,113,-129,63" Orientation="Vertical">
+            <RadioButton x:Name="rdoExpress" Content="Express" GroupName="Structures" Checked="rdoExpress_Checked"/>
+            <RadioButton x:Name="rdoStandard" Content="Standard" GroupName="Structures" Checked="rdoNonLinear_Checked"/>
         </StackPanel>
+        <StatusBar x:Name="StatusBar1" Margin="0,466,0,0"/>
+        <TextBox x:Name="txtName_Copy"       HorizontalAlignment="Left" Margin="90,150,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtName_TextChanged" />
+        <TextBox x:Name="txtName_Copy1"       HorizontalAlignment="Left" Margin="90,81,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtName_TextChanged" />
+        <ListView x:Name="lstView_Copy" Margin="193,197,460,28" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstView_SelectionChanged" Width="NaN" Height="NaN"/>
+        <ListView x:Name="lstView_Copy1" Margin="362,197,290,28" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstView_SelectionChanged" Width="NaN" Height="NaN"/>
 
-        <Grid Grid.Row="1" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <ListBox Grid.Column="0" x:Name="lstRegularQueue"
-                     ItemsSource="{Binding RegularQueue}" Margin="0,20,10,0">
-                <!-- List box template -->
-            </ListBox>
-
-            <ListBox Grid.Column="1" x:Name="lstExpressQueue"
-                     ItemsSource="{Binding ExpressQueue}" Margin="0,20,10,0">
-                <!-- List box template -->
-            </ListBox>
-
-            <ListBox Grid.Column="2" x:Name="lstFinishedJobs"
-                     ItemsSource="{Binding CompletedWork}" Margin="0,20,0,0">
-                <!-- List box template -->
-            </ListBox>
-        </Grid>
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <!-- Additional text boxes -->
-        </StackPanel>
-
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
-            <!-- Additional text boxes -->
-        </StackPanel>
-
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10">
-            <!-- Additional text boxes -->
-        </StackPanel>
-
-        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="10">
-            <!-- Additional text boxes -->
-        </StackPanel>
     </Grid>
 </Window>

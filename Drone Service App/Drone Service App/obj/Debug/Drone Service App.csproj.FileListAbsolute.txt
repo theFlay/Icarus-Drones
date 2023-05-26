@@ -1,0 +1,6 @@
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.AssemblyReference.cache
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.SuggestedBindingRedirects.cache
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\MainWindow.g.cs
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\App.g.cs
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App_MarkupCompile.cache
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App_MarkupCompile.lref
