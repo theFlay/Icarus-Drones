@@ -5,37 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Drone_Service_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="10,0,10,0" Width="NaN">
-        <Label x:Name="lblName"      HorizontalAlignment="Left" Margin="20,46,0,0" VerticalAlignment="Top" Content="Name" FontFamily="Segoe UI" />
-        <Label x:Name="lblCategory"  HorizontalAlignment="Left" Margin="20,79,0,0" VerticalAlignment="Top" Content="Category" FontFamily="Segoe UI" RenderTransformOrigin="0.569,0.502" />
-        <Label x:Name="lblStructure" HorizontalAlignment="Left" Margin="19,143,0,0" VerticalAlignment="Top" Content="Structure" FontFamily="Segoe UI" />
-        <Label x:Name="lblDefiniton" HorizontalAlignment="Left" Margin="18,117,0,0" VerticalAlignment="Top" Content="Definiton" FontFamily="Segoe UI" />
+        Title="MainWindow" Height="550" Width="460"
+        ResizeMode="NoResize">
+    <Grid>
 
-        <TextBox x:Name="txtSearch"     HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtSearch_TextChanged" />
-        <TextBox x:Name="txtName"       HorizontalAlignment="Left" Margin="90,50,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtName_TextChanged" />
-        <TextBox x:Name="txtDefiniton"  HorizontalAlignment="Left" Margin="90,117,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtDefiniton_TextChanged" />
+        <!-- Labels -->
+        <Label x:Name="lblClientName"     HorizontalAlignment="Left" Margin="12,64,0,0"   VerticalAlignment="Top" Content="Client Name"  FontFamily="Segoe UI" />
+        <Label x:Name="lblDroneModel"     HorizontalAlignment="Left" Margin="12,94,0,0"   VerticalAlignment="Top" Content="Drone Model"  FontFamily="Segoe UI"/>
+        <Label x:Name="lblServiceProblem" HorizontalAlignment="Left" Margin="12,124,0,0"  VerticalAlignment="Top" Content="Problem"     FontFamily="Segoe UI" />
+        <Label x:Name="lblServiceCost"    HorizontalAlignment="Left" Margin="12,221,0,0"  VerticalAlignment="Top" Content="Service Cost" FontFamily="Segoe UI" />
+        <Label x:Name="lblServiceTag"     HorizontalAlignment="Left" Margin="12,251,0,0"  VerticalAlignment="Top" Content="Service Tag"  FontFamily="Segoe UI" />
 
-        <Button x:Name="searchButton" Margin="20,10,0,0" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="searchButton_Click"/>
-        <Button x:Name="addButton"    Margin="0,13,0,0" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Click="addButton_Click"/>
-        <Button x:Name="editButton"   Margin="0,44,0,0" Content="Edit" HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Click="editButton_Click"/>
 
-        <Button x:Name="deleteButton" Margin="0,79,0,0" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Click="deleteButton_Click"/>
-        <Button x:Name="loadButton"   Margin="442,46,0,0" Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="loadButton_Click"/>
-        <Button x:Name="saveButton"   Margin="442,15,0,0" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="saveButton_Click"/>
+        <!-- TextBoxs -->
+        <TextBox x:Name="txtSearch"       HorizontalAlignment="Left" Margin="102,34,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap"  />
+        <TextBox x:Name="txtClientName"   HorizontalAlignment="Left" Margin="102,69,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap"  />
+        <TextBox x:Name="txtDroneModel"   HorizontalAlignment="Left" Margin="102,99,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap" />
+        <TextBox x:Name="txtSerProblem"   HorizontalAlignment="Left" Margin="102,129,0,0" VerticalAlignment="Top" Width="150" Height="90" TextWrapping="Wrap"  AcceptsReturn="True"/>
+        <TextBox x:Name="txtSerCost"      HorizontalAlignment="Left" Margin="102,226,0,0" VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap" />
+        <TextBox x:Name="txtSerTag"       HorizontalAlignment="Left" Margin="102,254,0,0" VerticalAlignment="Top" Width="50"  Height="20" TextWrapping="Wrap" />
 
-        <ListView x:Name="lstView" Margin="20,197,633,28" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstView_SelectionChanged" Width="NaN" Height="NaN"/>
-        <StatusBar x:Name="statusBar" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></StatusBar>
 
-        <StackPanel Margin="363,113,-129,63" Orientation="Vertical">
-            <RadioButton x:Name="rdoExpress" Content="Express" GroupName="Structures" Checked="rdoExpress_Checked"/>
-            <RadioButton x:Name="rdoStandard" Content="Standard" GroupName="Structures" Checked="rdoNonLinear_Checked"/>
-        </StackPanel>
-        <StatusBar x:Name="StatusBar1" Margin="0,466,0,0"/>
-        <TextBox x:Name="txtName_Copy"       HorizontalAlignment="Left" Margin="90,150,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtName_TextChanged" />
-        <TextBox x:Name="txtName_Copy1"       HorizontalAlignment="Left" Margin="90,81,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="250" TextChanged="txtName_TextChanged" />
-        <ListView x:Name="lstView_Copy" Margin="193,197,460,28" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstView_SelectionChanged" Width="NaN" Height="NaN"/>
-        <ListView x:Name="lstView_Copy1" Margin="362,197,290,28" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstView_SelectionChanged" Width="NaN" Height="NaN"/>
+        <!-- Buttons -->
+        <Button x:Name="searchButton"    HorizontalAlignment="Left" Margin="12,34,0,0"  VerticalAlignment="Top" Width="80" Height="20" Content="Search" Click="searchButton_Click_1"/>
+        <Button x:Name="addQueue"        HorizontalAlignment="Left" Margin="12,9,0,0"   VerticalAlignment="Top" Width="80" Height="20" Content="Add" Click="addQueue_Click_1"/>
+        <Button x:Name="editButton"      HorizontalAlignment="Left" Margin="102,9,0,0"  VerticalAlignment="Top" Width="80" Height="20" Content="Edit" Click="editButton_Click_1"/>
+        <Button x:Name="completeButton"  HorizontalAlignment="Left" Margin="190,9,0,0"  VerticalAlignment="Top" Width="80" Height="20" Content="Complete" Click="completeButton_Click_1"/>
+        <Button x:Name="paidButton"      HorizontalAlignment="Left" Margin="275,9,0,0"  VerticalAlignment="Top" Width="80" Height="20" Content="Paid" Click="paidButton_Click_1"/>
+        <Button x:Name="deleteButton"    HorizontalAlignment="Left" Margin="360,9,0,0"  VerticalAlignment="Top" Width="80" Height="20" Content="Delete" Click="deleteButton_Click_1"/>
+
+
+        <!-- ListViews -->
+        <ListView x:Name="lstView_Standard" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,289,0,0" d:ItemsSource="{d:SampleData ItemCount=9}" Width="215" Height="190" SelectionChanged="lstView_Standard_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <!-- Header for lstView_Standard -->
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <TextBlock Text="Standard" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="lstView_Express" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232,289,0,0" d:ItemsSource="{d:SampleData ItemCount=9}" Width="210" Height="190" SelectionChanged="lstView_Express_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <!-- Header for lstView_Express -->
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <TextBlock Text="Express" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="lstView_Finished" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="257,34,0,0" d:ItemsSource="{d:SampleData ItemCount=12}" Height="247" Width="185" SelectionChanged="lstView_Finished_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <!-- Header for lstView_Finished -->
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <TextBlock Text="Finished" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <!-- RepeatButtons -->
+        <RepeatButton Content="+" Command="{Binding IncrementCommand}" Margin="81,254,359,260" Width="20"  Height="20" Click="RepeatButton_Click" />
+        <RepeatButton Content="-" Command="{Binding DecrementCommand}" Margin="153,254,287,260" Width="20"  Height="20" Click="RepeatButton_Click_1" />
+
+
+        <!-- Statusbar -->
+        <StatusBar Margin="0,485,0,0" />
+
+
+        <!-- Radio Buttons -->
+        <RadioButton x:Name="RdoStandard" Content="Standard" HorizontalAlignment="Left" Margin="182,251,0,0" VerticalAlignment="Top" Checked="RdoStandard_Checked" />
+        <RadioButton x:Name="RdoExpress"  Content="Express"  HorizontalAlignment="Left" Margin="182,265,0,0" VerticalAlignment="Top" Checked="RdoExpress_Checked" />
 
     </Grid>
 </Window>
