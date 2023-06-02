@@ -73,7 +73,7 @@ namespace Drone_Service_App
 			finishedList = new List<Drone>();
 		}
 
-		public void AddNewItem(TextBox clientNameTextBox, TextBox droneModelTextBox, TextBox serviceProblemTextBox, TextBox serviceCostTextBox, NumericUpDown serviceTagNumericUpDown, RadioButton regularRadioButton, RadioButton expressRadioButton)
+		public void AddNewDrone(TextBox clientNameTextBox, TextBox droneModelTextBox, TextBox serviceProblemTextBox, TextBox serviceCostTextBox, NumericUpDown serviceTagNumericUpDown, RadioButton regularRadioButton, RadioButton expressRadioButton)
 		{
 			string clientName = clientNameTextBox.Text;
 			string droneModel = droneModelTextBox.Text;

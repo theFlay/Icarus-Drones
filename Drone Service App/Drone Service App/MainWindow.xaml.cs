@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,9 +16,10 @@ namespace Drone_Service_App
             InitializeComponent();
         }
 
+
 		private void addQueue_Click(object sender, RoutedEventArgs e)
 		{
-
+			AddNewDrone();
 		}
 
 		private void searchButton_Click(object sender, RoutedEventArgs e)
