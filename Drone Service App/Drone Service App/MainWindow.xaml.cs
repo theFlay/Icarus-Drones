@@ -1,25 +1,99 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 
 namespace Drone_Service_App
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
+        public static List<Drone> FinishedList = new List<Drone>();
+        public static Queue<Drone> StandardQueue = new Queue<Drone>();
+        public static Queue<Drone> ExpressQueue = new Queue<Drone>();
         public MainWindow()
         {
             InitializeComponent();
         }
+        //Add method
+        #region
+        private void AddNewItem()
+        {
+            CheckFields();
+            //Retrieve the value of the ServiceTag control
+            int serviceTagValue = ServiceTag.Value.Value;
+
+            //Declare the newItem variable outside of the try-catch block
+            Drone newItem;
+
+            try
+            {
+                //Creates a new item Drone object with the desired data
+                newItem = new Drone
+                {
+                    ClientName = txtName.Text,
+                    DroneModel = txtModel.Text,
+                    ServiceProblem = txtProblem.Text,
+                    ServiceCost = double.Parse(txtCost.Text),
+                    ServiceTag = serviceTagValue
+                };
+                StatusBar("Item successfully added to queue");
+            }
+            catch (System.FormatException)
+            {
+                StatusBar("Action cancelled - Please fill out all fields, and please enter numbers only for cost ");
+                return;
+            }
+
+            //Checks if there are any duplicates
+            if (HasDuplicates(newItem.ClientName))
+            {
+                ClearTextBoxes();
+                // There are duplicates
+                StatusBar("Duplicate found - Action Cancelled");
+                return;
+            }
+
+            // Get the service priority from the GetServicePriority method
+            string servicePriority = GetServicePriority();
+
+            //Check the state of the radio buttons to determine which queue to add the new item to
+            if (servicePriority == "Express")
+            {
+                // Increase the service cost by 15%
+                newItem.ServiceCost *= 1.15;
+
+                //Add the service item to the Express Service queue
+                ExpressService.Enqueue(newItem);
+
+                //Display the contents of the ExpressService queue in the list view Express control
+                Display(lstViewExpress, ExpressService);
+
+                //Increments the value of the Service Tag control by 10
+                ServiceTag.Value += 10;
+            }
+            else if (servicePriority == "Standard")
+            {
+                //Add the service item to the RegularService queue
+                StandardService.Enqueue(newItem);
+
+                //Display the contents of the RegularService queue in the list view control
+                Display(lstViewStandard, StandardService);
+
+                //Increments the value of the Service Tag control by 10
+                ServiceTag.Value += 10;
+            }
+            ClearTextBoxes();
+        }
+        #endregion
 
 
-		private void addQueue_Click(object sender, RoutedEventArgs e)
+        private void addQueue_Click(object sender, RoutedEventArgs e)
 		{
-			AddNewDrone();
+
 		}
 
 		private void searchButton_Click(object sender, RoutedEventArgs e)
