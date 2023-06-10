@@ -20,3 +20,13 @@ C:\Users\30063444\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service
 C:\Users\30063444\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.CoreCompileInputs.cache
 C:\Users\30063444\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.exe
 C:\Users\30063444\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.pdb
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.exe
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.pdb
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Drone Service App.exe.config
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Drone Service App.exe
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Drone Service App.pdb
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\MainWindow.baml
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.g.resources
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone_Service_App.Properties.Resources.resources
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.GenerateResource.cache
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.CoreCompileInputs.cache
