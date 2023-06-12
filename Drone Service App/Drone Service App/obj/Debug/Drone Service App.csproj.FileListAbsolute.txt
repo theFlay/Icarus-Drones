@@ -30,3 +30,22 @@ C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App
 C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone_Service_App.Properties.Resources.resources
 C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.GenerateResource.cache
 C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.CoreCompileInputs.cache
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\nl-BE\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Flay\Documents\GitHub\Icarus-Drones\Drone Service App\Drone Service App\obj\Debug\Drone Service App.csproj.CopyComplete

@@ -4,26 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Drone_Service_App"
-        xmlns:wpfx="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolkit.Extended"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="460"
         ResizeMode="NoResize">
     <Grid>
 
         <!-- Labels -->
-        <Label x:Name="lblClientName"     HorizontalAlignment="Left" Margin="12,64,0,0"   VerticalAlignment="Top" Content="Client Name"  FontFamily="Segoe UI" />
-        <Label x:Name="lblDroneModel"     HorizontalAlignment="Left" Margin="12,94,0,0"   VerticalAlignment="Top" Content="Drone Model"  FontFamily="Segoe UI"/>
-        <Label x:Name="lblServiceProblem" HorizontalAlignment="Left" Margin="12,124,0,0"  VerticalAlignment="Top" Content="Problem"     FontFamily="Segoe UI" />
-        <Label x:Name="lblServiceCost"    HorizontalAlignment="Left" Margin="12,221,0,0"  VerticalAlignment="Top" Content="Service Cost" FontFamily="Segoe UI" />
-        <Label x:Name="lblServiceTag"     HorizontalAlignment="Left" Margin="12,251,0,0"  VerticalAlignment="Top" Content="Service Tag"  FontFamily="Segoe UI" />
+        <Label x:Name="lblClientName"     HorizontalAlignment="Left" Margin="12,35,0,0"   VerticalAlignment="Top" Content="Client Name"  FontFamily="Segoe UI" />
+        <Label x:Name="lblDroneModel"     HorizontalAlignment="Left" Margin="12,65,0,0"   VerticalAlignment="Top" Content="Drone Model"  FontFamily="Segoe UI"/>
+        <Label x:Name="lblServiceProblem" HorizontalAlignment="Left" Margin="12,95,0,0"  VerticalAlignment="Top" Content="Problem"     FontFamily="Segoe UI" />
+        <Label x:Name="lblServiceCost"    HorizontalAlignment="Left" Margin="12,192,0,0"  VerticalAlignment="Top" Content="Service Cost" FontFamily="Segoe UI" />
+        <Label x:Name="lblServiceTag"     HorizontalAlignment="Left" Margin="12,222,0,0"  VerticalAlignment="Top" Content="Service Tag"  FontFamily="Segoe UI" />
 
 
         <!-- TextBoxs -->
-        <TextBox x:Name="txtClientName"   HorizontalAlignment="Left" Margin="102,69,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap"  />
-        <TextBox x:Name="txtDroneModel"   HorizontalAlignment="Left" Margin="102,99,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap" />
-        <TextBox x:Name="txtSerProblem"   HorizontalAlignment="Left" Margin="102,129,0,0" VerticalAlignment="Top" Width="150" Height="90" TextWrapping="Wrap"  AcceptsReturn="True"/>
-        <TextBox x:Name="txtSerCost"      HorizontalAlignment="Left" Margin="102,226,0,0" VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap" TextChanged="txtSerCost_TextChanged" />
-        <TextBox x:Name="txtSerTag"       HorizontalAlignment="Left" Margin="102,254,0,0" VerticalAlignment="Top" Width="50"  Height="20" TextWrapping="Wrap" />
+        <TextBox x:Name="txtClientName"   HorizontalAlignment="Left" Margin="102,40,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap"  />
+        <TextBox x:Name="txtDroneModel"   HorizontalAlignment="Left" Margin="102,70,0,0"  VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap" />
+        <TextBox x:Name="txtSerProblem"   HorizontalAlignment="Left" Margin="102,100,0,0" VerticalAlignment="Top" Width="150" Height="90" TextWrapping="Wrap"  AcceptsReturn="True"/>
+        <TextBox x:Name="txtSerCost"      HorizontalAlignment="Left" Margin="102,197,0,0" VerticalAlignment="Top" Width="150" Height="20" TextWrapping="Wrap" TextChanged="txtSerCost_TextChanged" />
+        <!-- <TextBox x:Name="txtSerTag"       HorizontalAlignment="Left" Margin="102,254,0,0" VerticalAlignment="Top" Width="50"  Height="20" TextWrapping="Wrap" /> -->
 
 
         <!-- Buttons -->
@@ -76,17 +76,18 @@
 
 
         <!-- RepeatButtons -->
-
-        <wpfx:IntegerUpDown x:Name="ServiceTag" FormatString="F" Height="30" Increment="10" Margin="81,254,287,260" Value="100" Minimum="100" Maximum="900" HorizontalAlignment="Stretch"/>
         <!-- Statusbar -->
         <StatusBar x:Name="statusBar" Margin="0,485,0,0" />
 
 
         <!-- Radio Buttons -->
-        <RadioButton x:Name="RdoStandard" Content="Standard" HorizontalAlignment="Left" Margin="182,251,0,0" VerticalAlignment="Top" Checked="RdoStandard_Checked" />
-        <RadioButton x:Name="RdoExpress"  Content="Express"  HorizontalAlignment="Left" Margin="182,265,0,0" VerticalAlignment="Top" Checked="RdoExpress_Checked" />
-        <RepeatButton Content="+" Command="{Binding IncrementCommand}" Margin="81,254,359,260" Width="20"  Height="20" Click="plusButton" />
-        <RepeatButton Content="-" Command="{Binding DecrementCommand}" Margin="153,254,287,260" Width="20"  Height="20" Click="minusButton" />
+        <RadioButton x:Name="RdoStandard" Content="Standard" HorizontalAlignment="Left" Margin="190,239,0,0" VerticalAlignment="Top" Checked="RdoStandard_Checked" />
+        <RadioButton x:Name="RdoExpress"  Content="Express"  HorizontalAlignment="Left" Margin="190,224,0,0" VerticalAlignment="Top" Checked="RdoExpress_Checked" />
+
+        <StackPanel Margin="90,221,278,250">
+            <xctk:IntegerUpDown x:Name="ServiceTag" FormatString="F" Height="31" Increment="10" Value="100" Minimum="100" Maximum="900"/>
+        </StackPanel>
+
 
     </Grid>
 </Window>
