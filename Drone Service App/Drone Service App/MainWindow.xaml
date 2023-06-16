@@ -14,7 +14,7 @@
         <Label x:Name="lblClientName"     HorizontalAlignment="Left" Margin="12,35,0,0"   VerticalAlignment="Top" Content="Client Name"  FontFamily="Segoe UI" />
         <Label x:Name="lblDroneModel"     HorizontalAlignment="Left" Margin="12,65,0,0"   VerticalAlignment="Top" Content="Drone Model"  FontFamily="Segoe UI"/>
         <Label x:Name="lblServiceProblem" HorizontalAlignment="Left" Margin="12,95,0,0"  VerticalAlignment="Top" Content="Problem"     FontFamily="Segoe UI" />
-        <Label x:Name="lblServiceCost"    HorizontalAlignment="Left" Margin="12,192,0,0"  VerticalAlignment="Top" Content="Service Cost" FontFamily="Segoe UI" />
+        <Label x:Name="lblServiceCost"    HorizontalAlignment="Left" Margin="12,192,0,0"  VerticalAlignment="Top" Content="Service Cost" FontFamily="Segoe UI" PreviewTextInput="keyPress" />
         <Label x:Name="lblServiceTag"     HorizontalAlignment="Left" Margin="12,222,0,0"  VerticalAlignment="Top" Content="Service Tag"  FontFamily="Segoe UI" />
 
 

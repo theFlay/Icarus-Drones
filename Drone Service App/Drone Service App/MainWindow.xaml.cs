@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Documents;
+using Xceed.Wpf.AvalonDock.Themes;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using System.Windows.Input;
+
 
 
 namespace Drone_Service_App
@@ -19,15 +26,42 @@ namespace Drone_Service_App
 
         }
 
-        //Add method
-        #region
-        private void AddNewItem()
+		// Srvice Cost double KEY PRESS method
+		#region
+		private void keyPress(object sender, TextCompositionEventArgs e)
+		{
+			// Allow only digits and a decimal point
+			if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ".")
+			{
+				e.Handled = true;
+			}
+			else if (e.Text == ".")
+			{
+				// Allow only one decimal point
+				if (((TextBox)sender).Text.Contains("."))
+				{
+					e.Handled = true;
+				}
+			}
+		}
+
+		#endregion
+
+		//Add method
+		#region
+		private void AddNewItem()
         {
             CheckFields();
             int serviceTagValue = ServiceTag.Value.Value;
-            Drone newItem;            
+            Drone newItem;
 
-            try
+			if (!double.TryParse(txtSerCost.Text, out double serviceCost))
+			{
+				StatusBar("Service cost must be a number");
+                txtSerCost.Clear();
+				return;
+			}
+			try
             {
                 newItem = new Drone
                 {
@@ -41,7 +75,7 @@ namespace Drone_Service_App
             }
             catch (System.FormatException)
             {
-                StatusBar("Action cancelled - Please fill out all fields");
+                StatusBar("Cancelled - Please enter all info");
                 return;
             }
 
@@ -313,26 +347,30 @@ namespace Drone_Service_App
                 Display(lstView_Finished, FinishedList);
             }
         }
-        #endregion
+		#endregion
 
+		// Client Paid
+		#region
+		private void ClientPaid()
+		{
+			if (lstView_Finished.SelectedItem != null)
+			{
+				ListViewItem selectedItem = (ListViewItem)lstView_Finished.SelectedItem;
+				int index = lstView_Finished.Items.IndexOf(selectedItem);
 
-        //Client Paid
-        #region
-        private void ClientPaid()
-        {
-            if (lstView_Finished.SelectedItem != null)
-            {
-                ListViewItem selectedItem = (ListViewItem)lstView_Finished.SelectedItem;
-                int index = lstView_Finished.Items.IndexOf(selectedItem);
-                FinishedList.RemoveAt(index);
-                Display(lstView_Finished, FinishedList);
-            }
-        }
-        #endregion
+				if (index >= 0 && index < FinishedList.Count)
+				{
+					FinishedList.RemoveAt(index);
+					Display(lstView_Finished, FinishedList);
+					StatusBar("Client paid - removed from finished jobs");
+				}
+			}
+		}
+		#endregion
 
-        //Button clicks
-        #region
-        private void StatusBar(string msg)
+		//Button clicks
+		#region
+		private void StatusBar(string msg)
         {
             statusBar.Items.Clear();
             statusBar.Items.Add(msg);
@@ -356,17 +394,136 @@ namespace Drone_Service_App
 		private void paidButton_Click(object sender, RoutedEventArgs e)
 		{
             ClientPaid();
-            StatusBar("Client paid - removed from finished jobs");
         }
 
 		private void deleteButton_Click(object sender, RoutedEventArgs e)
 		{
             DeleteSelectedItem();
         }
+		private void minusButton(object sender, RoutedEventArgs e)
+		{
+			int currentValue = int.Parse(ServiceTag.Text);
+			int newValue = currentValue - 10;
+			newValue = Math.Max(newValue, 100); // Ensure the new value is not less than 100
+			ServiceTag.Text = newValue.ToString();
+		}
 
-        //unused
+		private void plusButton(object sender, RoutedEventArgs e)
+		{
+			int currentValue = int.Parse(ServiceTag.Text);
+			int newValue = currentValue + 10;
+			newValue = Math.Min(newValue, 900); // Ensure the new value is not greater than 900
+			ServiceTag.Text = newValue.ToString();
+        }
+		#endregion
+
+		// Update the textboxes with drone data
+		#region
+		private void IndexShow(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (lstView_Standard.SelectedItem != null)
+            {
+                ListViewItem selectedItem = (ListViewItem)lstView_Standard.SelectedItem;
+                int index = lstView_Standard.Items.IndexOf(selectedItem);
+                Drone selectedDrone = StandardQueue.ElementAt(index);
+                UpdateTextBoxes(selectedDrone);
+                RdoStandard.IsChecked = true;
+            }
+            else if (lstView_Express.SelectedItem != null)
+            {
+                ListViewItem selectedItem = (ListViewItem)lstView_Express.SelectedItem;
+                int index = lstView_Express.Items.IndexOf(selectedItem);
+                Drone selectedDrone = ExpressQueue.ElementAt(index);
+                UpdateTextBoxes(selectedDrone);
+                RdoExpress.IsChecked = true;
+            }
+            else if (lstView_Finished.SelectedItem != null)
+            {
+                ListViewItem selectedItem = (ListViewItem)lstView_Finished.SelectedItem;
+                int index = lstView_Finished.Items.IndexOf(selectedItem);
+                Drone selectedDrone = FinishedList[index];
+                UpdateTextBoxes(selectedDrone);
+                RdoStandard.IsChecked = false;
+                RdoExpress.IsChecked = false;
+            }
+
+            StatusBar("All fields populated - Waiting for next action");
+        }
+        private void UpdateTextBoxes(Drone drone)
+		{
+			txtClientName.Text = drone.ClientName;
+			txtDroneModel.Text = drone.DroneModel;
+			txtSerProblem.Text = drone.ServiceProblem;
+			txtSerCost.Text = drone.ServiceCost.ToString();
+			ServiceTag.Value = drone.ServiceTag;
+		}
+        #endregion
+
+        //Deselecting listview items
         #region
-        private void txtClientName_TextChanged(object sender, TextChangedEventArgs e)
+        private void lstView_Standard_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			lstView_Express.SelectedItem = null;
+			lstView_Finished.SelectedItem = null;
+			if (lstView_Standard.SelectedItem != null)
+			{
+				ListViewItem selectedItem = (ListViewItem)lstView_Standard.SelectedItem;
+				int index = lstView_Standard.Items.IndexOf(selectedItem);
+				Drone selectedDrone = StandardQueue.ElementAt(index);
+				UpdateTextBoxes(selectedDrone);
+				RdoStandard.IsChecked = true;
+			}
+			else
+			{
+				ClearTextBoxes();
+				RdoStandard.IsChecked = false;
+			}
+		}
+
+		private void lstView_Express_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			lstView_Standard.SelectedItem = null;
+			lstView_Finished.SelectedItem = null;
+			if (lstView_Express.SelectedItem != null)
+			{
+				ListViewItem selectedItem = (ListViewItem)lstView_Express.SelectedItem;
+				int index = lstView_Express.Items.IndexOf(selectedItem);
+				Drone selectedDrone = ExpressQueue.ElementAt(index);
+				UpdateTextBoxes(selectedDrone);
+				RdoExpress.IsChecked = true;
+			}
+			else
+			{
+				ClearTextBoxes();
+				RdoExpress.IsChecked = false;
+			}
+		}
+
+		private void lstView_Finished_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			lstView_Express.SelectedItem = null;
+			lstView_Standard.SelectedItem = null;
+			if (lstView_Finished.SelectedItem != null)
+			{
+				ListViewItem selectedItem = (ListViewItem)lstView_Finished.SelectedItem;
+				int index = lstView_Finished.Items.IndexOf(selectedItem);
+				Drone selectedDrone = FinishedList[index];
+				UpdateTextBoxes(selectedDrone);
+				RdoStandard.IsChecked = false;
+				RdoExpress.IsChecked = false;
+			}
+			else
+			{
+				ClearTextBoxes();
+				RdoStandard.IsChecked = false;
+				RdoExpress.IsChecked = false;
+			}
+		}
+		#endregion
+
+		//unused
+		#region
+		private void txtClientName_TextChanged(object sender, TextChangedEventArgs e)
 		{
 
 		}
@@ -395,84 +552,7 @@ namespace Drone_Service_App
 		{
 
 		}
-        #endregion
-        #endregion
+		#endregion
 
-        //Deselecting listview items
-        #region
-        private void lstView_Standard_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-            lstView_Express.SelectedItem = null;
-            lstView_Finished.SelectedItem = null;
-        }
-
-		private void lstView_Express_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-            lstView_Standard.SelectedItem = null;
-            lstView_Finished.SelectedItem = null;
-        }
-
-		private void lstView_Finished_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-            lstView_Standard.SelectedItem = null;
-            lstView_Express.SelectedItem = null;
-        }
-        #endregion
-
-
-        private void lstView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var standardDrone = (lstView_Standard.SelectedItem as ListViewItem)?.Tag as Drone;
-            var expressDrone = (lstView_Express.SelectedItem as ListViewItem)?.Tag as Drone;
-            var finishedDrone = (lstView_Finished.SelectedItem as ListViewItem)?.Tag as Drone;
-            int serviceTagValue = ServiceTag.Value.Value;
-
-
-            if (standardDrone != null)
-            {
-                txtClientName.Text = standardDrone.ClientName;
-                txtDroneModel.Text = standardDrone.DroneModel;
-                txtSerProblem.Text = standardDrone.ServiceProblem;
-                txtSerCost.Text = standardDrone.ServiceCost.ToString();
-                ServiceTag.Value = standardDrone.ServiceTag;
-                RdoStandard.IsChecked = true;
-            }
-            else if (expressDrone != null)
-            {
-                txtClientName.Text = expressDrone.ClientName;
-                txtDroneModel.Text = expressDrone.DroneModel;
-                txtSerProblem.Text = expressDrone.ServiceProblem;
-                txtSerCost.Text = expressDrone.ServiceCost.ToString();
-                ServiceTag.Value = expressDrone.ServiceTag;
-                RdoExpress.IsChecked = true;
-            }
-            else if (finishedDrone != null)
-            {
-                txtClientName.Text = finishedDrone.ClientName;
-                txtDroneModel.Text = finishedDrone.DroneModel;
-                txtSerProblem.Text = finishedDrone.ServiceProblem;
-                txtSerCost.Text = finishedDrone.ServiceCost.ToString();
-                ServiceTag.Value = finishedDrone.ServiceTag;
-                RdoStandard.IsChecked = false;
-                RdoExpress.IsChecked = false;
-            }
-            StatusBar("All fields poplated - Waiting for next action");
-        }
-        private void minusButton(object sender, RoutedEventArgs e)
-        {
-            int currentValue = int.Parse(ServiceTag.Text);
-            int newValue = currentValue - 10;
-            newValue = Math.Max(newValue, 100); // Ensure the new value is not less than 100
-            ServiceTag.Text = newValue.ToString();
-        }
-
-        private void plusButton(object sender, RoutedEventArgs e)
-        {
-            int currentValue = int.Parse(ServiceTag.Text);
-            int newValue = currentValue + 10;
-            newValue = Math.Min(newValue, 900); // Ensure the new value is not greater than 900
-            ServiceTag.Text = newValue.ToString();
-        }
-
-    }
+	}
 }
